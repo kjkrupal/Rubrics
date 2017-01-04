@@ -1,8 +1,8 @@
 <?php
 //DB details
 $dbHost = 'localhost';
-$dbUsername = 'root';
-$dbPassword = '';
+$dbUsername = 'krupal';
+$dbPassword = 'krupal';
 $dbName = 'rubric';
 
 //Create connection and select DB
