@@ -50,13 +50,16 @@ function addStudent($name, $email, $phone){
 
 <body>
 
+    <form action="importData.php" method="post" enctype="multipart/form-data" id="importFrm">
+                
+    Class Name: <input type="text" name="cname"><br><br>
+
     <?php 
         if(!empty($statusMsg)){
             echo '<div class="alert '.$statusMsgClass.'">'.$statusMsg.'</div>';
         } 
     ?>
-    <form action="importData.php" method="post" enctype="multipart/form-data" id="importFrm">
-                
+
         <input type="file" name="file" />
         <input type="submit" name="importSubmit" value="IMPORT">
     </form>
