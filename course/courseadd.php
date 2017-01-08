@@ -20,7 +20,7 @@
 
      
 
-    // Escape user inputs for security
+    //Escape user inputs for security
 
     $cname = mysqli_real_escape_string($link, $_POST['cname']);
 
