@@ -30,16 +30,16 @@ if(isset($_POST['action'])){
 }
 
 function deleteStudent($id){
-    //echo "DELETE FROM dbit WHERE id=".$id;
+    //echo "DELETE FROM temp_data WHERE id=".$id;
     include 'dbConfig.php';
-    $db->query("DELETE FROM dbit WHERE id=".$id);
+    $db->query("DELETE FROM temp_data WHERE id=".$id);
 
 }
 
 function addStudent($name, $email, $phone){
-    //echo "DELETE FROM dbit WHERE id=".$id;
+    //echo "DELETE FROM temp_data WHERE id=".$id;
     include 'dbConfig.php';
-    $db->query("INSERT INTO dbit (name, email, phone) VALUES ('".$name."','".$email."','".$phone."')");
+    $db->query("INSERT INTO temp_data (name, email, phone) VALUES ('".$name."','".$email."','".$phone."')");
 
 }
 
@@ -75,7 +75,7 @@ function addStudent($name, $email, $phone){
         <tbody>
             <?php
             //get rows query
-                $query = $db->query("SELECT * FROM dbit ORDER BY id DESC");
+                $query = $db->query("SELECT * FROM temp_data ORDER BY id DESC");
                 if($query->num_rows > 0){ 
                     while($row = $query->fetch_assoc()){
             ?>
