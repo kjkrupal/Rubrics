@@ -2,7 +2,7 @@
 session_start();
 
 if(isset($_SESSION['usr_id'])!="") {
-    header("Location: index.php");
+    header("Location: home.php");
 }
 
 include_once 'dbconnect.php';
@@ -16,7 +16,7 @@ if (isset($_POST['login'])) {
     if ($row = mysqli_fetch_array($result)) {
         $_SESSION['usr_id'] = $row['id'];
         $_SESSION['usr_name'] = $row['name'];
-        header("Location: index.php");
+        header("Location: home.php");
     } else {
         $errormsg = "Incorrect Email or Password!!!";
     }
@@ -27,52 +27,20 @@ if (isset($_POST['login'])) {
 <html>
 <head>
     <title>login</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" >
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 </head>
 <body>
 
-
-                <li class="active"><a href="login.php">Login</a></li>
-                <li><a href="register.php">Sign Up</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 well">
-            <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="loginform">
-                <fieldset>
-                    <legend>Login</legend>
+    <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="loginform">
                     
-                    <div class="form-group">
-                        <label for="name">Email</label>
-                        <input type="text" name="email" placeholder="Your Email" required class="form-control" />
-                    </div>
+        Email: <input type="text" name="email"/><br>
+        Password: <input type="password" name="password"/>
+        <input type="submit" name="login" value="Login" class="btn btn-primary" />
+                    
+    </form>
+    
+    <?php if (isset($errormsg)) { echo $errormsg; } ?>
+    
+    New User? <a href="register.php">Sign Up Here</a>
 
-                    <div class="form-group">
-                        <label for="name">Password</label>
-                        <input type="password" name="password" placeholder="Your Password" required class="form-control" />
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" name="login" value="Login" class="btn btn-primary" />
-                    </div>
-                </fieldset>
-            </form>
-            <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-4 text-center">    
-        New User? <a href="register.php">Sign Up Here</a>
-        </div>
-    </div>
-</div>
-
-<script src="js/jquery-1.10.2.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
