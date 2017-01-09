@@ -10,7 +10,12 @@ include_once '../dbConfig.php';
 <body>
 
     <?php if (isset($_SESSION['teacher_id'])) { ?>
-    Signed in as <?php echo $_SESSION['teacher_name']; ?>
+    Signed in as <?php echo $_SESSION['teacher_name']; ?><br><br>
+    
+    <a href="">Manage courses</a><br>
+    <a href="">Manage Students</a><br>
+    <a href="">Manage Rubrics</a><br>
+    <a href="">Start Grading</a><br><br>
     <a href="logout.php">Log Out</a>
     <?php } else { ?>
     You are not Logged in! Kindly <a href="login.php">login here</a><br>
