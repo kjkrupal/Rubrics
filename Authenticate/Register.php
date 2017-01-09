@@ -5,15 +5,15 @@ if(isset($_SESSION['usr_id'])) {
     header("Location: index.php");
 }
 
-include_once 'dbconnect.php';
+include_once '../dbConfig.php';
 
 $error = false;
 
 if (isset($_POST['signup'])) {
-    $name = mysqli_real_escape_string($con, $_POST['name']);
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
-    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+    $name = mysqli_real_escape_string($db, $_POST['name']);
+    $email = mysqli_real_escape_string($db, $_POST['email']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($db, $_POST['cpassword']);
     
     if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
         $error = true;
@@ -32,7 +32,7 @@ if (isset($_POST['signup'])) {
         $cpassword_error = "Password and Confirm Password doesn't match";
     }
     if (!$error) {
-        if(mysqli_query($con, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
+        if(mysqli_query($db, "INSERT INTO users(name,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
             $successmsg = "Successfully Registered! <a href='login.php'>Click here to Login</a>";
         } else {
             $errormsg = "Error in registering...Please try again later!";
