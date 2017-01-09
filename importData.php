@@ -18,14 +18,14 @@ if(isset($_POST['importSubmit'])){
             //parse data from csv file line by line
             while(($line = fgetcsv($csvFile)) == True){
                 //check whether member already exists in database with same email
-                $prevQuery = "SELECT id FROM dbit WHERE email = '".$line[1]."'";
+                $prevQuery = "SELECT temp_id FROM temp_data WHERE email = '".$line[1]."'";
                 $prevResult = $db->query($prevQuery);
                 if($prevResult->num_rows >= 1){
                     $sql = "UPDATE dbit SET name = '".$line[0]."', phone = '".$line[2]."' WHERE email = '".$line[1]."'" ;
                     $db->query($sql);
                 }else{
                     
-                        $sql = "INSERT INTO dbit (name, email, phone) VALUES ('".$line[0]."','".$line[1]."','".$line[2]."')" ;
+                        $sql = "INSERT INTO temp_data (name, email, phone) VALUES ('".$line[0]."','".$line[1]."','".$line[2]."')" ;
                         $db->query($sql);
                     
                 }

@@ -9,8 +9,8 @@ include_once '../dbConfig.php';
 </head>
 <body>
 
-    <?php if (isset($_SESSION['usr_id'])) { ?>
-    Signed in as <?php echo $_SESSION['usr_name']; ?>
+    <?php if (isset($_SESSION['teacher_id'])) { ?>
+    Signed in as <?php echo $_SESSION['teacher_name']; ?>
     <a href="logout.php">Log Out</a>
     <?php } else { ?>
     You are not Logged in! Kindly <a href="login.php">login here</a><br>

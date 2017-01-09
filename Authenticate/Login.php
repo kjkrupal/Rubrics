@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if(isset($_SESSION['usr_id'])!="") {
+if(isset($_SESSION['teacher_id'])!="") {
     header("Location: home.php");
 }
 
@@ -14,8 +14,8 @@ if (isset($_POST['login'])) {
     $result = mysqli_query($db, "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . md5($password) . "'");
 
     if ($row = mysqli_fetch_array($result)) {
-        $_SESSION['usr_id'] = $row['id'];
-        $_SESSION['usr_name'] = $row['name'];
+        $_SESSION['teacher_id'] = $row['teacher_id'];
+        $_SESSION['teacher_name'] = $row['name'];
         header("Location: home.php");
     } else {
         $errormsg = "Incorrect Email or Password!!!";

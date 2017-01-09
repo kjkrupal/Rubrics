@@ -22,8 +22,8 @@ if(!empty($_GET['status'])){
     }
 }
 
-if(isset($_GET['id'])){
-    deleteStudent($_GET['id']);
+if(isset($_GET['temp_id'])){
+    deleteStudent($_GET['temp_id']);
 }
 if(isset($_POST['action'])){
     addStudent($_POST['name1'], $_POST['email1'], $_POST['phone1']);
@@ -32,7 +32,7 @@ if(isset($_POST['action'])){
 function deleteStudent($id){
     //echo "DELETE FROM temp_data WHERE id=".$id;
     include 'dbConfig.php';
-    $db->query("DELETE FROM temp_data WHERE id=".$id);
+    $db->query("DELETE FROM temp_data WHERE temp_id=".$id);
 
 }
 
@@ -75,7 +75,7 @@ function addStudent($name, $email, $phone){
         <tbody>
             <?php
             //get rows query
-                $query = $db->query("SELECT * FROM temp_data ORDER BY id DESC");
+                $query = $db->query("SELECT * FROM temp_data ORDER BY temp_id DESC");
                 if($query->num_rows > 0){ 
                     while($row = $query->fetch_assoc()){
             ?>
@@ -83,7 +83,7 @@ function addStudent($name, $email, $phone){
                 <td><?php echo $row['name']; ?></td>
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['phone']; ?></td>
-                <td><a href="index.php?id=<?php echo $row['id']; ?>">Delete</a></td>
+                <td><a href="index.php?temp_id=<?php echo $row['temp_id']; ?>">Delete</a></td>
             </tr>
             <?php } } 
                 else{ ?>
