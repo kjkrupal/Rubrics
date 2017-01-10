@@ -48,7 +48,7 @@ if (isset($_POST['signup'])) {
 </head>
 <body>
 
-    <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="signupform">
+    <form role="form" action="Register.php" method="post" name="signupform">
 
         Name: <input type="text" name="name" required value="<?php if($error) echo $name; ?>"/><br>
         <?php if (isset($name_error)) echo $name_error; ?>

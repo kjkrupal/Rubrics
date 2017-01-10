@@ -30,11 +30,11 @@ if (isset($_POST['login'])) {
 </head>
 <body>
 
-    <form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="loginform">
+    <form role="form" action="Login.php" method="post" name="loginform">
                     
-        Email: <input type="text" name="email"/><br>
-        Password: <input type="password" name="password"/>
-        <input type="submit" name="login" value="Login" class="btn btn-primary" />
+        Email: <input type="text" name="email" required/><br>
+        Password: <input type="password" name="password" required/>
+        <input type="submit" name="login" value="Login" />
                     
     </form>
     
