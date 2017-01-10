@@ -1,7 +1,7 @@
 <?php
 //load the database configuration file
 include 'dbConfig.php';
-
+session_start();
 if(isset($_POST['importSubmit'])){
     $sql = "";
     //validate whether uploaded file is a csv file
@@ -18,14 +18,15 @@ if(isset($_POST['importSubmit'])){
             //parse data from csv file line by line
             while(($line = fgetcsv($csvFile)) == True){
                 //check whether member already exists in database with same email
+                $teacher_id = $_SESSION['teacher_id'];
                 $prevQuery = "SELECT temp_id FROM temp_data WHERE email = '".$line[1]."'";
                 $prevResult = $db->query($prevQuery);
                 if($prevResult->num_rows >= 1){
-                    $sql = "UPDATE dbit SET name = '".$line[0]."', phone = '".$line[2]."' WHERE email = '".$line[1]."'" ;
+                    $sql = "UPDATE dbit SET name = '".$line[0]."', phone = '".$line[2]."', teacher_id = '".$teacher_id."' WHERE email = '".$line[1]."'" ;
                     $db->query($sql);
                 }else{
                     
-                        $sql = "INSERT INTO temp_data (name, email, phone) VALUES ('".$line[0]."','".$line[1]."','".$line[2]."')" ;
+                        $sql = "INSERT INTO temp_data (name, email, phone, teacher_id) VALUES ('".$line[0]."','".$line[1]."','".$line[2]."','".$teacher_id."')" ;
                         $db->query($sql);
                     
                 }
@@ -48,4 +49,4 @@ if(isset($_POST['importSubmit'])){
 }
 
 //redirect to the listing page
-header("Location: index.php".$qstring);
+header("Location: addstudent.php".$qstring);
