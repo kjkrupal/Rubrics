@@ -12,7 +12,7 @@ include_once '../dbConfig.php';
     <?php if (isset($_SESSION['teacher_id'])) { ?>
     Signed in as <?php echo $_SESSION['teacher_name']; ?><br><br>
     
-    <a href="">Manage courses</a><br>
+    <a href="../course/courses.php">Manage courses</a><br>
     <a href="../addstudent.php">Manage Students</a><br>
     <a href="">Manage Rubrics</a><br>
     <a href="">Start Grading</a><br><br>

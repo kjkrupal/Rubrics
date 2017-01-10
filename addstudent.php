@@ -45,7 +45,7 @@ if(isset($_POST['action1'])){
         $db->query("DELETE FROM temp_data WHERE teacher_id = ".$_SESSION['teacher_id'].";");
         $classmsg = $_POST['cname']." class added" ;
 
-        $db->query("");
+        $db->query("INSERT INTO class (classname,tid) VALUES ('".$_POST['cname']."','".$_SESSION['teacher_id']."')");
     } 
     else{
         $classmsg = "Please enter name of class" ;
@@ -77,8 +77,6 @@ function addStudent($name, $email, $phone){
 
     <form action="importData.php" method="post" enctype="multipart/form-data" id="importFrm">
                 
-    
-
     <?php 
         if(!empty($statusMsg)){
             echo '<br><br><div class="alert '.$statusMsgClass.'">'.$statusMsg.'</div>';
@@ -141,3 +139,4 @@ function addStudent($name, $email, $phone){
     </form>
 </body>
 </html>
+

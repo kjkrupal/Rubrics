@@ -1,54 +1,25 @@
+<?php
 
-
-    <?php
-
-    /* Attempt MySQL server connection. Assuming you are running MySQL
-
-    server with default setting (user 'root' with no password) */
-
-    $link = mysqli_connect("localhost", "root", "sushant","testdb");
-
-     
-
-    // Check connection
-
-    if($link === false){
-
-        die("ERROR: Could not connect. " . mysqli_connect_error());
-
-    }
-
-     
-
+    
     //Escape user inputs for security
 
-    $cname = mysqli_real_escape_string($link, $_POST['cname']);
+    $cname = mysqli_real_escape_string($db, $_POST['cname']);
 
-    $clname = mysqli_real_escape_string($link, $_POST['clname']);
+    $clname = mysqli_real_escape_string($db, $_POST['clname']);
 
-    $tname = mysqli_real_escape_string($link, $_POST['tname']);
-
-     
-
-    // attempt insert query execution
+    $tname = mysqli_real_escape_string($db, $_POST['tname']);
 
     $sql = "INSERT INTO courses (cname, classname, coursedesc) VALUES ('$cname', '$clname', '$tname')";
 
-    if(mysqli_query($link, $sql)){
+    if(mysqli_query($db, $sql)){
 
         echo "Records added successfully.";
 
     } else{
 
-        echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
+        echo "ERROR: Could not able to execute $sql. " . mysqli_error($db);
 
     }
 
-     
-
-    // close connection
-
-    mysqli_close($link);
-
-    ?>
+?>
 
