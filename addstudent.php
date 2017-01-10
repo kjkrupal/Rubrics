@@ -44,6 +44,8 @@ if(isset($_POST['action1'])){
         
         $db->query("DELETE FROM temp_data WHERE teacher_id = ".$_SESSION['teacher_id'].";");
         $classmsg = $_POST['cname']." class added" ;
+
+        $db->query("");
     } 
     else{
         $classmsg = "Please enter name of class" ;
