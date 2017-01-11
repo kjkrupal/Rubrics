@@ -107,7 +107,7 @@ function addStudent($name, $email, $phone){
                 <td><?php echo $row['email']; ?></td>
                 <td><?php echo $row['phone']; ?></td>
                 <td><a href="addstudent.php?temp_id=<?php echo $row['temp_id']; ?>">Delete</a> 
-                <a href="#">Edit</a></td>
+                <a href="Edit.php">Edit</a></td>
             </tr>
             <?php } } 
                 else{ ?>
