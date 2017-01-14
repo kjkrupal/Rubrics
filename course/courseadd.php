@@ -5,11 +5,11 @@
 
     $cname = mysqli_real_escape_string($db, $_POST['cname']);
 
-    $clname = mysqli_real_escape_string($db, $_POST['clname']);
+    $clname = mysqli_real_escape_string($db, $_POST['classname']);
 
     $tname = mysqli_real_escape_string($db, $_POST['tname']);
 
-    $sql = "INSERT INTO courses (cname, classname, coursedesc) VALUES ('$cname', '$clname', '$tname')";
+    $sql = "INSERT INTO course (coursename, description, classname, tid) VALUES ('$cname', '$clname', '$tname')";
 
     if(mysqli_query($db, $sql)){
 
