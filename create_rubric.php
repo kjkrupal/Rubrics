@@ -10,10 +10,14 @@ if(isset($_POST['submitRubricName'])){
 	$db->query("INSERT INTO rubrics (rubricname,tid) VALUES ('".$rubricname."','".$tid."');");
 	$status = true;
 	$_SESSION['rubricname'] = $rubricname;
-	$rubricLevel = $rubricname."level";
-	$rubricParameter = $rubricname."parameter";
+	$rubricLevel = $rubricname."level".$tid;
+	$rubricParameter = $rubricname."parameter".$tid;
 	$db->query("CREATE TABLE ".$rubricLevel." (level_id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), grade INT, PRIMARY KEY (level_id));");
 	$db->query("CREATE TABLE ".$rubricParameter." (param_id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), PRIMARY KEY (param_id));");
+}
+
+if(isset($_POST['submitLevel'])){
+	
 }
 
 ?>
@@ -31,7 +35,9 @@ if(isset($_POST['submitRubricName'])){
 	<?php } else { ?>
 		
 		<form method="POST" action="create_rubric.php">
-			<input type="text" name="">
+			Enter Level: <input type="text" name="level"><br><br>
+			Enter grade for level: <input type="text" name="grade"><br><br>
+			<input type="submit" name="submitLevel" value="Add level">
 		</form>
 
 	<?php } ?>
