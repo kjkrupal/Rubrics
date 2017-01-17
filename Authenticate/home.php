@@ -14,7 +14,7 @@ include_once '../dbConfig.php';
     
     <a href="../course/courses.php">Manage courses</a><br>
     <a href="../addstudent.php">Manage Students</a><br>
-    <a href="">Manage Rubrics</a><br>
+    <a href="../create_rubric.php">Manage Rubrics</a><br>
     <a href="">Start Grading</a><br><br>
     <a href="logout.php">Log Out</a>
     <?php } else { ?>
