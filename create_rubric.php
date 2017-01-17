@@ -8,7 +8,6 @@ if(isset($_POST['submit'])){
 	$tid = $_SESSION['teacher_id'];
 	$db->query("INSERT INTO rubrics (rubricname,tid) VALUES ('".$rubricname."','".$tid."');");
 }
-
 ?>
 <!DOCTYPE html>
 <html>
