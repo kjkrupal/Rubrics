@@ -9,15 +9,19 @@ if(isset($_POST['submitRubricName'])){
 	$tid = $_SESSION['teacher_id'];
 	$db->query("INSERT INTO rubrics (rubricname,tid) VALUES ('".$rubricname."','".$tid."');");
 	$status = true;
-	$_SESSION['rubricname'] = $rubricname;
 	$rubricLevel = $rubricname."level".$tid;
 	$rubricParameter = $rubricname."parameter".$tid;
+	$_SESSION['rubricname'] = $rubricLevel;
 	$db->query("CREATE TABLE ".$rubricLevel." (level_id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), grade INT, PRIMARY KEY (level_id));");
 	$db->query("CREATE TABLE ".$rubricParameter." (param_id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), PRIMARY KEY (param_id));");
 }
 
 if(isset($_POST['submitLevel'])){
-	
+	$level = $_POST['level'];
+	$grade = $_POST['grade'];
+	$tname = $_SESSION['rubricname'];
+	$db->query("INSERT INTO ".$tname." (name, grade) VALUES ('".$level."','".$grade."') ");
+	$status = true;
 }
 
 ?>
@@ -41,5 +45,6 @@ if(isset($_POST['submitLevel'])){
 		</form>
 
 	<?php } ?>
+	<?php  ?>
 </body>
 </html>
