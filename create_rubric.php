@@ -1,7 +1,7 @@
 <?php
 include 'dbConfig.php';
 $status = false;
-$parameterstatus = false;
+$parameterstatus = true;
 session_start();
 
 if(isset($_POST['submitRubricName'])){
@@ -51,14 +51,13 @@ if(isset($_POST['submitLevel'])){
 			<input type="submit" name="submitLevel" value="Submit and Add Parameter">
 		</form>
 
-	<?php } if($parameterstatus){ ?>
-
+	<?php } if($parameterstatus) { ?>
 		<form method="POST" action="create_rubric.php">
-			Enter Parameter: <input type="text" name="level"><br><br>
-			<input type="submit" name="submitParameter" value="Add Parameter">
+			Enter Level: <input type="text" name="level"><br><br>
+			Enter grade for Level: <input type="text" name="grade"><br><br>
+			<a href="create_rubric.php?action=level">Add Level</a>
+			<input type="submit" name="submitLevel" value="Submit and Add Parameter">
 		</form>
-
-	<?php } ?>
-
+	<?php ?>
 </body>
 </html>
