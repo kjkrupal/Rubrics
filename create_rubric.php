@@ -1,33 +1,50 @@
 <?php
 include 'dbConfig.php';
-$status = false;
-$parameterstatus = true;
+$rubricStatus = true;
+$rubricLevelStatus = false;
+$rubricParameterStatus = false;
 session_start();
 
 if(isset($_POST['submitRubricName'])){
 	
-	$rubricname = $_POST['rubricname']; 
+	$rubricName = $_POST['rubricName']; 
 	$tid = $_SESSION['teacher_id'];
-	$db->query("INSERT INTO rubrics (rubricname,tid) VALUES ('".$rubricname."','".$tid."');");
-	$status = true;
-	$rubricLevel = $rubricname."level".$tid;
-	$rubricParameter = $rubricname."parameter".$tid;
-	$_SESSION['rubricname'] = $rubricLevel;
-	$db->query("CREATE TABLE ".$rubricLevel." (level_id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), grade INT, PRIMARY KEY (level_id));");
+	$db->query("INSERT INTO rubrics (rubricname,tid) VALUES ('".$rubricName."','".$tid."');");
+	$rubricLevel = $rubricName."level".$tid;
+	$rubricParameter = $rubricName."parameter".$tid;
+	$_SESSION['rubricLevel'] = $rubricLevel;
+	$_SESSION['rubricParameter'] = $rubricParameter;
+	$db->query("CREATE TABLE ".$rubricLevel." (level_id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), minGrade INT, maxGrade INT, PRIMARY KEY (level_id));");
 	$db->query("CREATE TABLE ".$rubricParameter." (param_id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), PRIMARY KEY (param_id));");
-}
-
-if(isset($_GET['action'])){
-	$level = $_POST['level'];
-	$grade = $_POST['grade'];
-	$tname = $_SESSION['rubricname'];
-	$db->query("INSERT INTO ".$tname." (name, grade) VALUES ('".$level."','".$grade."')");
-	$status = true;
+	$rubricStatus = false;
+	$rubricLevelStatus = true;
+	$rubricParameterStatus = false;
 }
 
 if(isset($_POST['submitLevel'])){
-	$parameterstatus = true;
+	$level = $_POST['level'];
+	$minGrade = $_POST['minGrade'];
+	$maxGrade = $_POST['maxGrade'];
+	$tname = $_SESSION['rubricLevel'];
+	$db->query("INSERT INTO ".$tname." (name, minGrade, maxGrade) VALUES ('".$level."','".$minGrade."','".$maxGrade."')");
+	$rubricStatus = false;
+	$rubricLevelStatus = true;
+	$rubricParameterStatus = false;
+}
 
+if(isset($_POST['startParameter'])){
+	$rubricStatus = false;
+	$rubricLevelStatus = false;
+	$rubricParameterStatus = true;
+}
+
+if(isset($_POST['addParameter'])){
+	$parameter = $_POST['parameter'];
+	$tname = $_SESSION['rubricParameter'];
+	$db->query("INSERT INTO ".$tname." (name) VALUES ('".$parameter."')");
+	$rubricStatus = false;
+	$rubricLevelStatus = false;
+	$rubricParameterStatus = true;
 }
 
 ?>
@@ -37,27 +54,31 @@ if(isset($_POST['submitLevel'])){
 	<title>Create Rubric</title>
 </head>
 <body>
-	<?php if(!$status){ ?>
+	<?php if($rubricStatus){ ?>
 	<form method="POST" action="create_rubric.php">
-		Rubric name: <input type="text" name="rubricname"><br><br>
+		Rubric name: <input type="text" name="rubricName"><br><br>
 		<input type="submit" name="submitRubricName" value="Create">
 	</form>
-	<?php } else { ?>
+	<?php } else if($rubricLevelStatus){ ?>
 		
 		<form method="POST" action="create_rubric.php">
 			Enter Level: <input type="text" name="level"><br><br>
-			Enter grade for Level: <input type="text" name="grade"><br><br>
-			<a href="create_rubric.php?action=level">Add Level</a>
-			<input type="submit" name="submitLevel" value="Submit and Add Parameter">
+			Enter Min grade for Level: <input type="text" name="minGrade"><br><br>
+			Enter Max grade for Level: <input type="text" name="maxGrade"><br><br>
+			<input type="submit" name="submitLevel" value="Add level"><br><br>
+		</form>
+		<form method="POST" action="create_rubric.php">
+			<input type="submit" name="startParameter" value="Submit Levels and add parameter">
 		</form>
 
-	<?php } if($parameterstatus) { ?>
+	<?php } else if($rubricParameterStatus){ ?>
 		<form method="POST" action="create_rubric.php">
-			Enter Level: <input type="text" name="level"><br><br>
-			Enter grade for Level: <input type="text" name="grade"><br><br>
-			<a href="create_rubric.php?action=level">Add Level</a>
-			<input type="submit" name="submitLevel" value="Submit and Add Parameter">
+			Enter parameter: <input type="text" name="parameter">
+			<input type="submit" name="addParameter" value="Add parameter">
 		</form>
-	<?php ?>
+		<form method="POST" action="create_rubric.php">
+			<input type="submit" name="finish" value="Finish">
+		</form>
+	<?php } ?>
 </body>
 </html>
