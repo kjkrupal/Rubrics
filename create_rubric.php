@@ -89,7 +89,22 @@ if(isset($_POST['addParameter'])){
 	<?php if($showRubric) { ?>
 
 		<table>
-			<tr><td></td><td></td></tr>
+			<tr><td>---------</td>
+			<?php 
+				include 'dbConfig.php';
+				//session_start();
+				$level = $_SESSION['rubricLevel'];
+				$parameter = $_SESSION['rubricParameter'];
+				$levelQuery = $db->query("SELECT * FROM ".$level."  ORDER BY level_id ASC");
+				$parameterQuery = $db->query("SELECT * FROM ".$parameter."  ORDER BY param_id ASC");
+        		if($levelQuery->num_rows > 0){ 
+            		while($row = $levelQuery->fetch_assoc()){ ?>
+			<td><?php echo $row['name']?></td>
+			<?php }} ?></tr>
+			<?php if($parameterQuery->num_rows > 0){
+					while($row = $parameterQuery->fetch_assoc()){ ?>
+			<tr><td><?php echo $row['name'] ?></td></tr>
+			<?php }} ?>
 		</table>
 	
 	<?php } ?>
