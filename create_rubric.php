@@ -3,6 +3,7 @@ include 'dbConfig.php';
 $rubricStatus = true;
 $rubricLevelStatus = false;
 $rubricParameterStatus = false;
+$showRubric = false;
 session_start();
 
 if(isset($_POST['submitRubricName'])){
@@ -19,6 +20,7 @@ if(isset($_POST['submitRubricName'])){
 	$rubricStatus = false;
 	$rubricLevelStatus = true;
 	$rubricParameterStatus = false;
+	$showRubric = false;
 }
 
 if(isset($_POST['submitLevel'])){
@@ -30,12 +32,14 @@ if(isset($_POST['submitLevel'])){
 	$rubricStatus = false;
 	$rubricLevelStatus = true;
 	$rubricParameterStatus = false;
+	$showRubric = true;
 }
 
 if(isset($_POST['startParameter'])){
 	$rubricStatus = false;
 	$rubricLevelStatus = false;
 	$rubricParameterStatus = true;
+	$showRubric = true;
 }
 
 if(isset($_POST['addParameter'])){
@@ -45,6 +49,7 @@ if(isset($_POST['addParameter'])){
 	$rubricStatus = false;
 	$rubricLevelStatus = false;
 	$rubricParameterStatus = true;
+	$showRubric = true;
 }
 
 ?>
@@ -79,6 +84,14 @@ if(isset($_POST['addParameter'])){
 		<form method="POST" action="create_rubric.php">
 			<input type="submit" name="finish" value="Finish">
 		</form>
+	<?php } ?>
+
+	<?php if($showRubric) { ?>
+
+		<table>
+			<tr><td></td><td></td></tr>
+		</table>
+	
 	<?php } ?>
 </body>
 </html>
