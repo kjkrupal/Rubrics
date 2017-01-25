@@ -5,12 +5,11 @@ include_once 'dbConfig.php';
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home</title>
+    <title>Grading</title>
 </head>
 <body>
 
-    <?php include("home.php"); ?>
-   
+    Garding page
 
 </body>
 </html>
