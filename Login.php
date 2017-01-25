@@ -5,7 +5,7 @@ if(isset($_SESSION['teacher_id'])!="") {
     header("Location: home.php");
 }
 
-include_once '../dbConfig.php';
+include_once 'dbConfig.php';
 
 if (isset($_POST['login'])) {
 

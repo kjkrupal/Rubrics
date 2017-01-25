@@ -11,6 +11,5 @@ include_once 'dbConfig.php';
 
     <?php include("home.php"); ?>
    
-
 </body>
 </html>
