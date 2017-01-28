@@ -5,7 +5,7 @@ if(isset($_SESSION['usr_id'])) {
     header("Location: index.php");
 }
 
-include_once '../dbConfig.php';
+include_once 'dbConfig.php';
 
 $error = false;
 

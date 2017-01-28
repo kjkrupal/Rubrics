@@ -4,7 +4,7 @@ $rubricStatus = true;
 $rubricLevelStatus = false;
 $rubricParameterStatus = false;
 $showRubric = false;
-//session_start();
+session_start();
 
 if(isset($_POST['submitRubricName'])){
 	
@@ -60,7 +60,7 @@ if(isset($_POST['addParameter'])){
 </head>
 <body>
 
- <?php include("home.php"); ?>
+ 
 	<?php if($rubricStatus){ ?>
 	<form method="POST" action="create_rubric.php">
 		Rubric name: <input type="text" name="rubricName"><br><br>
@@ -94,7 +94,7 @@ if(isset($_POST['addParameter'])){
 			<tr><td>---------</td>
 			<?php 
 				include 'dbConfig.php';
-				//session_start();
+				session_start();
 				$level = $_SESSION['rubricLevel'];
 				$parameter = $_SESSION['rubricParameter'];
 				$levelQuery = $db->query("SELECT * FROM ".$level."  ORDER BY level_id ASC");
