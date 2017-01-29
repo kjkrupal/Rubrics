@@ -5,8 +5,8 @@
       $tid = $_SESSION['teacher_id'];
       $cname = $_POST['cname'];
       $cid = $_POST['cid'];
-      $description = $_POST['description'];
-      $sql = "INSERT INTO course (coursename, description, cid, tid) VALUES ('".$cname."', '".$description."', '".$cid."', '".$tid."')";
+      $desc = $_POST['description'];
+      $sql = "INSERT INTO course (coursename, description, cid, tid) VALUES ('".$cname."', '".$desc."', '".$cid."', '".$tid."')";
     }
 
 ?>
@@ -18,6 +18,7 @@
     Course name: <input type="text" name="cname" required/><br><br>
     Class name: 
     <select name="cid">
+    <option>--Select Class--</option>
       <?php 
 		    include '../dbConfig.php';
 		    $query = $db->query("SELECT * FROM class  ORDER BY cid DESC");
@@ -28,7 +29,7 @@
           <option value="none">No class created</option>
       <?php } ?>
     </select><br><br>
-    Course Description: <textarea rows="4" name="tname" cols="20"></textarea><br><br>
+    Course Description: <textarea rows="4" name="description" cols="20"></textarea><br><br>
     <input type="submit" name="submitCourse" value="submit">
   </form>
 </body>
