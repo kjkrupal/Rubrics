@@ -5,7 +5,6 @@
   <frame src="home.php">
    
   <frame src="blank.php" name="abc" noresize="noresize">
-
 </frameset>
-</html> 
 
+</html> 

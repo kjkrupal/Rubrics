@@ -59,33 +59,31 @@ if(isset($_POST['addParameter'])){
 	<title>Create Rubric</title>
 </head>
 <body>
-
- 
 	<?php if($rubricStatus){ ?>
 	<form method="POST" action="create_rubric.php">
 		Rubric name: <input type="text" name="rubricName"><br><br>
 		<input type="submit" name="submitRubricName" value="Create">
-	
+	</form>
 	<?php } else if($rubricLevelStatus){ ?>
 		
-		<center><form method="POST" action="create_rubric.php">
+		<form method="POST" action="create_rubric.php">
 			Enter Level: <input type="text" name="level"><br><br>
 			Enter Min grade for Level: <input type="text" name="minGrade"><br><br>
 			Enter Max grade for Level: <input type="text" name="maxGrade"><br><br>
 			<input type="submit" name="submitLevel" value="Add level"><br><br>
-		
-		<center><form method="POST" action="create_rubric.php">
+		</form>
+		<form method="POST" action="create_rubric.php">
 			<input type="submit" name="startParameter" value="Submit Levels and add parameter">
-		
+		</form>
 
 	<?php } else if($rubricParameterStatus){ ?>
-		<center><form method="POST" action="create_rubric.php">
+		<form method="POST" action="create_rubric.php">
 			Enter parameter: <input type="text" name="parameter">
 			<input type="submit" name="addParameter" value="Add parameter">
-		
-		<center><form method="POST" action="create_rubric.php">
+		</form>
+		<form method="POST" action="create_rubric.php">
 			<input type="submit" name="finish" value="Finish">
-		
+		</form>
 	<?php } ?>
 
 	<?php if($showRubric) { ?>
@@ -94,7 +92,7 @@ if(isset($_POST['addParameter'])){
 			<tr><td>---------</td>
 			<?php 
 				include 'dbConfig.php';
-				session_start();
+				//session_start();
 				$level = $_SESSION['rubricLevel'];
 				$parameter = $_SESSION['rubricParameter'];
 				$levelQuery = $db->query("SELECT * FROM ".$level."  ORDER BY level_id ASC");
