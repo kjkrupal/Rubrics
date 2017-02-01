@@ -2,7 +2,7 @@
 //DB details
 $dbHost = 'localhost';
 $dbUsername = 'root';
-$dbPassword = '';
+$dbPassword = 'sushant';
 $dbName = 'rubric';
 
 //Create connection and select DB
