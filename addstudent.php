@@ -43,7 +43,7 @@ if(isset($_POST['action1'])){
         $db->query("INSERT INTO ".$tname." (name,email,phone) SELECT DISTINCT name,email,phone FROM temp_data WHERE teacher_id=".$_SESSION['teacher_id']);
         
         $db->query("DELETE FROM temp_data WHERE teacher_id = ".$_SESSION['teacher_id'].";");
-        $classmsg = $_POST['cname']." class added" ;
+        
 
         $db->query("INSERT INTO class (classname,tid) VALUES ('".$_POST['cname']."','".$_SESSION['teacher_id']."')");
     } 
@@ -61,8 +61,7 @@ function deleteStudent($id){
 }
 
 function addStudent($name, $email, $phone){
-    //echo "DELETE FROM temp_data WHERE id=".$id;
-    include 'dbConfig.php';
+        include 'dbConfig.php';
     $teacher_id = $_SESSION['teacher_id'];
     $db->query("INSERT INTO temp_data (name, email, phone, teacher_id) VALUES ('".$name."','".$email."','".$phone."','".$teacher_id."')");
 
@@ -135,7 +134,7 @@ function addStudent($name, $email, $phone){
     ?>
         <input type="hidden" name="action1" value="addclass">
         <br><br><input type="submit" name="submit" value="Add Class">
-        <br><a href="Authenticate/home.php">Back</a>
+        <br><a href="home.php">Back</a>
     </form>
 </body>
 </html>

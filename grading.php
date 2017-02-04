@@ -9,12 +9,6 @@ include_once 'dbConfig.php';
 </head>
 <body>
 
-<<<<<<< HEAD
-    Grading page
-   
-=======
-    Garding page
-
->>>>>>> master
+Grading page
 </body>
 </html>
