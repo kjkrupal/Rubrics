@@ -10,7 +10,7 @@ include_once 'dbConfig.php';
         background-color: #4CAF50;
         border: none;
         color: whitesmoke;
-        padding: 15px 32px;
+        padding: 15px 15px;
         text-align: center;
         text-decoration: none;
         display: inline-block;
