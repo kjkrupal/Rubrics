@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+
+-- Generation Time: Feb 05, 2017 at 03:12 AM
+=======
 -- Generation Time: Feb 04, 2017 at 12:23 PM
+
 -- Server version: 5.7.14
 -- PHP Version: 5.6.25
 
@@ -23,6 +27,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+
+-- Table structure for table `beit2`
+--
+
+CREATE TABLE `beit2` (
+  `student_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `phone` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `beit2`
+--
+
+INSERT INTO `beit2` (`student_id`, `name`, `email`, `phone`) VALUES
+(1, 'Sushant ', 'su@gmail.com', '123456'),
+(2, 'Deepesh', 'dg@gmail.com', '123456');
+
+-- --------------------------------------------------------
+
+--
+
 -- Table structure for table `class`
 --
 
@@ -32,6 +59,14 @@ CREATE TABLE `class` (
   `tid` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`cid`, `classname`, `tid`) VALUES
+(11, 'seit', 2),
+(10, 'beit', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -39,11 +74,115 @@ CREATE TABLE `class` (
 --
 
 CREATE TABLE `course` (
-  `name` text NOT NULL,
-  `coid` varchar(20) NOT NULL,
-  `description` text NOT NULL,
-  `classname` text NOT NULL,
+  `coid` int(11) NOT NULL,
+  `coursename` text NOT NULL,
+  `cid` int(11) NOT NULL,
   `tid` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `course`
+--
+
+INSERT INTO `course` (`coid`, `coursename`, `cid`, `tid`) VALUES
+(1, 'Big Data', 10, 2),
+(2, 'SNMR', 10, 2),
+(3, 'CN', 11, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dbitlevel`
+--
+
+CREATE TABLE `dbitlevel` (
+  `level_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `minGrade` int(11) DEFAULT NULL,
+  `maxGrade` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dbitparameter`
+--
+
+CREATE TABLE `dbitparameter` (
+  `param_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `level`
+--
+
+CREATE TABLE `level` (
+  `level_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `minGrade` int(11) DEFAULT NULL,
+  `maxGrade` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `level2`
+--
+
+CREATE TABLE `level2` (
+  `level_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `minGrade` int(11) DEFAULT NULL,
+  `maxGrade` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mathslevel`
+--
+
+CREATE TABLE `mathslevel` (
+  `level_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `minGrade` int(11) DEFAULT NULL,
+  `maxGrade` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mathsparameter`
+--
+
+CREATE TABLE `mathsparameter` (
+  `param_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parameter`
+--
+
+CREATE TABLE `parameter` (
+  `param_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `parameter2`
+--
+
+CREATE TABLE `parameter2` (
+  `param_id` int(11) NOT NULL,
+  `name` varchar(100) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -181,6 +320,28 @@ INSERT INTO `rubrics` (`rid`, `rubricname`, `tid`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `seit2`
+--
+
+CREATE TABLE `seit2` (
+  `student_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(40) NOT NULL,
+  `phone` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `seit2`
+--
+
+INSERT INTO `seit2` (`student_id`, `name`, `email`, `phone`) VALUES
+(1, 'Sushant ', 'su@gmail.com', '123456'),
+(2, 'Deepesh', 'dg@gmail.com', '123456');
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `temp_data`
 --
 
@@ -224,6 +385,14 @@ ALTER TABLE `class`
   ADD PRIMARY KEY (`cid`);
 
 --
+
+-- Indexes for table `course`
+--
+ALTER TABLE `course`
+  ADD PRIMARY KEY (`coid`);
+
+--
+
 -- Indexes for table `dbitlevel`
 --
 ALTER TABLE `dbitlevel`
@@ -282,6 +451,13 @@ ALTER TABLE `registration`
 --
 ALTER TABLE `rubrics`
   ADD PRIMARY KEY (`rid`);
+
+--
+-- Indexes for table `seit2`
+--
+ALTER TABLE `seit2`
+  ADD PRIMARY KEY (`student_id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `temp_data`
@@ -344,6 +520,58 @@ ALTER TABLE `parameter`
 --
 -- AUTO_INCREMENT for table `parameter2`
 --
+
+ALTER TABLE `beit2`
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `class`
+--
+ALTER TABLE `class`
+  MODIFY `cid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+--
+-- AUTO_INCREMENT for table `course`
+--
+ALTER TABLE `course`
+  MODIFY `coid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `dbitlevel`
+--
+ALTER TABLE `dbitlevel`
+  MODIFY `level_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `dbitparameter`
+--
+ALTER TABLE `dbitparameter`
+  MODIFY `param_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `level`
+--
+ALTER TABLE `level`
+  MODIFY `level_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `level2`
+--
+ALTER TABLE `level2`
+  MODIFY `level_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `mathslevel`
+--
+ALTER TABLE `mathslevel`
+  MODIFY `level_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `mathsparameter`
+--
+ALTER TABLE `mathsparameter`
+  MODIFY `param_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `parameter`
+--
+ALTER TABLE `parameter`
+  MODIFY `param_id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `parameter2`
+--
+
 ALTER TABLE `parameter2`
   MODIFY `param_id` int(11) NOT NULL AUTO_INCREMENT;
 --
@@ -351,11 +579,22 @@ ALTER TABLE `parameter2`
 --
 ALTER TABLE `rubrics`
   MODIFY `rid` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `seit2`
+--
+ALTER TABLE `seit2`
+  MODIFY `student_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `temp_data`
 --
 ALTER TABLE `temp_data`
+
+  MODIFY `temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+=======
   MODIFY `temp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
