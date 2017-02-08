@@ -5,6 +5,28 @@ include 'dbConfig.php';
 $classStatus = true;
 $courseStatus = false;
 $rubricStatus = false;
+
+if(isset($_POST['submitClass'])){
+	$_SESSION['grade_cid'] = $_POST['cid'];
+	$classStatus = false;
+	$courseStatus = true;
+	$rubricStatus = false;
+}
+
+if(isset($_POST['submitCourse'])){
+	$_SESSION['grade_coid'] = $_POST['coid'];
+	$classStatus = false;
+	$courseStatus = false;
+	$rubricStatus = true;
+}
+
+if(isset($_POST['submitRubrics'])){
+	$_SESSION['grade_rid'] = $_POST['rid'];
+	$classStatus = false;
+	$courseStatus = false;
+	$rubricStatus = false;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -12,56 +34,66 @@ $rubricStatus = false;
     <title>Grading</title>
 </head>
 <body>
+	
+	<?php if($classStatus){ ?>
+	<form method="post" action="grading.php">
+	Choose class: 
+	<select name="cid">
+		<option value="">--SELECT--</option>
+			<?php
+				$query = $db->query("SELECT * FROM class WHERE tid=".$_SESSION['teacher_id']);
+				if($query->num_rows > 0){
+					while ($row = $query->fetch_assoc()){
+			?>
+	
+		<option value="<?php echo $row['cid']; ?>"><?php echo $row['classname'];?></option>
+	
+		<?php }} else { ?>
+			<option value="">No Class Available</option>
+		<?php } ?>
+	</select>
+	<input type="submit" name="submitClass" value="Submit">
+	</form method="post" action="grading.php">
+	
+	<?php } else if($courseStatus){ ?>
 	<form>
-		<?php if($classStatus){ ?>
-		Choose class: 
-		<select>
+	Choose course: 
+	<select name="coid">
 		<option value="">--SELECT--</option>
-		<?php
-		$query = $db->query("SELECT * FROM class WHERE tid=".$_SESSION['teacher_id']);
-		if($query->num_rows > 0){
-			while ($row = $query->fetch_assoc()){
-		?>
-		
-			<option value="<?php echo $row['cid']; ?>"><?php echo $row['classname'];?></option>
-		
+			<?php
+				$query = $db->query("SELECT * FROM class WHERE tid=".$_SESSION['teacher_id']);
+				if($query->num_rows > 0){
+					while ($row = $query->fetch_assoc()){
+			?>
+	
+		<option value="<?php echo $row['cid']; ?>"><?php echo $row['classname'];?></option>
+	
 		<?php }} else { ?>
-			<option value="">No Class Available</option>
+			<option value="">No Course Available</option>
 		<?php } ?>
-		</select>
-		<?php } else if($courseStatus){ ?>
-		Choose course: 
-		<select>
-		<option value="">--SELECT--</option>
-		<?php
-		$query = $db->query("SELECT * FROM class WHERE tid=".$_SESSION['teacher_id']);
-		if($query->num_rows > 0){
-			while ($row = $query->fetch_assoc()){
-		?>
-		
-			<option value="<?php echo $row['cid']; ?>"><?php echo $row['classname'];?></option>
-		
-		<?php }} else { ?>
-			<option value="">No Class Available</option>
-		<?php } ?>
-		</select>
-		<?php } else if($rubricStatus){ ?>
-		Choose rubrics: 
-		<select>
-		<option value="">--SELECT--</option>
-		<?php
-		$query = $db->query("SELECT * FROM class WHERE tid=".$_SESSION['teacher_id']);
-		if($query->num_rows > 0){
-			while ($row = $query->fetch_assoc()){
-		?>
-		
-			<option value="<?php echo $row['cid']; ?>"><?php echo $row['classname'];?></option>
-		
-		<?php }} else { ?>
-			<option value="">No Class Available</option>
-		<?php } ?>
-		</select>
-		<?php } else if($courseStatus){ ?>
+	</select>
+	<input type="submit" name="submitCourse" value="Submit">
 	</form>
+	
+	<?php } else if($rubricStatus){ ?>
+	<form method="post" action="grading.php">
+	Choose rubrics: 
+	<select name="rid">
+		<option value="">--SELECT--</option>
+			<?php
+				$query = $db->query("SELECT * FROM class WHERE tid=".$_SESSION['teacher_id']);
+				if($query->num_rows > 0){
+					while ($row = $query->fetch_assoc()){
+			?>
+	
+		<option value="<?php echo $row['cid']; ?>"><?php echo $row['classname'];?></option>
+	
+		<?php }} else { ?>
+			<option value="">No Rubrics Available</option>
+		<?php } ?>
+	</select>
+	<input type="submit" name="submitRubrics" value="Submit">
+	</form>
+	<?php } else if($courseStatus){ ?>
 </body>
 </html>
