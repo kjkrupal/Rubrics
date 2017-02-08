@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
-
+<a href="addstudent.php">Add Class</a>
 <?php
 session_start();
 include_once 'dbConfig.php';
@@ -45,7 +45,9 @@ if(isset($_GET['action'])){
 
    		$classdata=$db->query("SELECT * FROM ".$tablename);
 
-   		while($rows = $classdata->fetch_assoc()){
+   		if($classdata->num_rows > 0){
+        while($rows = $classdata->fetch_assoc()){
+
    		?>	
 
    		<table>
@@ -56,7 +58,7 @@ if(isset($_GET['action'])){
                 <td><a href="manageclass.php?action=deleteStudent&sid=<?php echo $rows['student_id'];?>&cid=<?php echo $row['cid']; ?>">Delete</a></td>
             </tr>    
    		</table>
-   		<?php }
+   		<?php }}
    		
    }
 ?>

@@ -19,7 +19,7 @@
     Class name: 
     <select name="cid">
       <?php 
-		    include '../dbConfig.php';
+		    include 'dbConfig.php';
 		    $query = $db->query("SELECT * FROM class  ORDER BY cid DESC");
         if($query->num_rows > 0){ 
           while($row = $query->fetch_assoc()){?>
@@ -28,7 +28,6 @@
           <option value="none">No class created</option>
       <?php } ?>
     </select><br><br>
-    Course Description: <textarea rows="4" name="tname" cols="20"></textarea><br><br>
     <input type="submit" name="submitCourse" value="submit">
   </form>
 </body>

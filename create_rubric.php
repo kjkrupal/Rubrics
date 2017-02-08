@@ -89,10 +89,10 @@ if(isset($_POST['addParameter'])){
 	<?php if($showRubric) { ?>
 
 		<table>
-			<tr><td>---------</td>
+			<tr><td>Category</td>
 			<?php 
 				include 'dbConfig.php';
-				//session_start();
+				
 				$level = $_SESSION['rubricLevel'];
 				$parameter = $_SESSION['rubricParameter'];
 				$levelQuery = $db->query("SELECT * FROM ".$level."  ORDER BY level_id ASC");

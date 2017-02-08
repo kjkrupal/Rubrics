@@ -8,7 +8,7 @@ include_once 'dbConfig.php';
     <title>Grading</title>
 </head>
 <body>
-
-Grading page
+<form>
+</form>
 </body>
 </html>
