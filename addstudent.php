@@ -134,7 +134,7 @@ function addStudent($name, $email, $phone){
     ?>
         <input type="hidden" name="action1" value="addclass">
         <br><br><input type="submit" name="submit" value="Add Class">
-        <br><a href="home.php">Back</a>
+        <br><a href="manageclass.php">Back</a>
     </form>
 </body>
 </html>

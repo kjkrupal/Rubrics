@@ -5,6 +5,7 @@
 </head>
 <body>
 
+<a href="courses.php">Add Course</a>
 <?php
 session_start();
 include 'dbConfig.php';

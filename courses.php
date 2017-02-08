@@ -29,6 +29,7 @@
       <?php } ?>
     </select><br><br>
     <input type="submit" name="submitCourse" value="submit">
+    <a href="managecourse.php">Back</a>
   </form>
 </body>
 </html>
