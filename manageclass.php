@@ -1,9 +1,19 @@
 <!DOCTYPE html>
 <html>
+<head>
+<style>
+table, th, td{
+    border: 0.5px solid black;
+    border-collapse: collapse;
+}
+</style>
+
+</head>
 <body>
+<?php include("home.php"); ?>
 <a href="addstudent.php">Add Class</a>
 <?php
-session_start();
+//session_start();
 include_once 'dbConfig.php';
 
 if(isset($_GET['action'])){
@@ -27,9 +37,10 @@ if(isset($_GET['action'])){
  
    while($row = $classname->fetch_assoc()){
    		
-   		?><h2><?php echo $row['classname'];?></h2><?php ?>
-   		<a href="manageclass.php?action=deleteClass&cid=<?php echo $row['cid']; ?>">Delete</a>
-   		<table>
+   		?>
+      <table>
+      <h2><?php echo $row['classname'];?></h2>
+   		<a href="manageclass.php?action=deleteClass&cid=<?php echo $row['cid']; ?>">Delete</a>   		
    		<thead>
             <tr>
                 <th>Name</th>
@@ -38,8 +49,7 @@ if(isset($_GET['action'])){
                 <th>Action</th>
             </tr>
         </thead>
-        </table>
-
+        
    		<?php
    		$tablename=$row['classname'].$_SESSION['teacher_id'];
 
@@ -50,17 +60,18 @@ if(isset($_GET['action'])){
 
    		?>	
 
-   		<table>
+   		
    			<tr>
                 <td><?php echo $rows['name']; ?></td>
                 <td><?php echo $rows['email']; ?></td>
                 <td><?php echo $rows['phone']; ?></td>
                 <td><a href="manageclass.php?action=deleteStudent&sid=<?php echo $rows['student_id'];?>&cid=<?php echo $row['cid']; ?>">Delete</a></td>
             </tr>    
-   		</table>
+   		
    		<?php }}
    		
    }
 ?>
+</table>
 </body>
 </html>

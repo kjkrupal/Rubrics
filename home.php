@@ -12,15 +12,18 @@ include_once 'dbConfig.php';
 </head>
 <body>
 <form>
+    
     <?php if (isset($_SESSION['teacher_id'])) { ?>
     Signed in as <?php echo $_SESSION['teacher_name']; ?><br><br>
     
-    <a href="home.php" target="abc" >Home</a><br>    
-    <a href="managecourse.php" target="abc">Manage courses</a><br>    
-    <a href="manageclass.php" target="abc" >Manage Class</a><br>
-    <a href="create_rubric.php" target="abc">Manage Rubrics</a><br>    
-    <a href="select_grading.php" target="abc">Start Grading</a><br><br>       
-    <a href="javascript://" onclick="self.parent.location='logout.php'" target="abc">Logout</a>
+
+    <a href="home.php" >Home</a><br>    
+    <a href="managecourse.php" >Manage courses</a><br>    
+    <a href="manageclass.php"  >Manage Class</a><br>
+    <a href="create_rubric.php" >Manage Rubrics</a><br>    
+    <a href="grading.php" >Start Grading</a><br><br>       
+    <a href="javascript://" onclick="self.parent.location='logout.php'" >Logout</a>
+
     
     <?php } else { ?>
 <center>

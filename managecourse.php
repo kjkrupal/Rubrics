@@ -1,13 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+
+nav{
+	float:left;
+	height: 100%;
+	width: 200px;
+	
+}
+
+article{
+	margin-left: 170px;    
+    padding: 1em;
+    overflow: hidden;
+}
+
+table, th, td{
+    border: 0.5px solid black;
+    border-collapse: collapse;
+}
+</style>
+
 	<title>Course</title>
 </head>
-<body>
 
+<body>
+<nav id="nav">
+<?php include("home.php"); ?>
+</nav>
+
+<article id="main">
 <a href="courses.php">Add Course</a>
 <?php
-session_start();
+//session_start();
 include 'dbConfig.php';
 
 if(isset($_GET['action'] )){
@@ -21,31 +48,32 @@ if(isset($_GET['action'] )){
 	$classname=$db->query("SELECT classname,cid FROM class WHERE tid=".$_SESSION['teacher_id']);   
    while($row = $classname->fetch_assoc())
    {
-   	?> <h2><?php echo $row['classname'];?></h2>
-   <br>
-		<table>
-      		<thead>
+   	?>
+
+   	
+   	 <h3><?php echo $row['classname'];?></h3>
+   
+		<table style="width: 20%">   		
             <tr>
+            <thead>
                 <th><h4>Course</h4></th>
                 <th><h4>Action</h4></th>
+                </thead>
             </tr>
-      		</thead>
-      </table>
-
    <?php
 	$course=$db->query("SELECT coursename, coid FROM course WHERE cid=".$row['cid']);
 	while($row = $course->fetch_assoc())
 	{
-	 	?><br>
-	 	<table>
+	 	?>	 	
 	 	<tr>
-	 	<td><?php echo $row['coursename']; ?></td>
+	 	<td><h3><?php echo $row['coursename']; ?></h3></td>
 	 	<td><a href="managecourse.php?action=deleteCourse&cn=<?php echo $row['coid'];?>">Delete</a></td>
 	 	</tr>
-	 	</table>
+	 	
 	<?php  } ?>
-	 <br>
+	 <br></table>
 	 <?php 
 	 } ?>
+	 </article>
 </body>
 </html>
