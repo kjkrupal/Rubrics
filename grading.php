@@ -1,14 +1,9 @@
-<?php
-session_start();
-include_once 'dbConfig.php';
-?>
-<!DOCTYPE html>
+</!DOCTYPE html>
 <html>
 <head>
-    <title>Grading</title>
+	<title>Grading</title>
 </head>
 <body>
-<form>
-</form>
+
 </body>
 </html>
