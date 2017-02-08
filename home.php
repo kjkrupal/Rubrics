@@ -28,7 +28,8 @@ include_once 'dbConfig.php';
     Signed in as <?php echo $_SESSION['teacher_name']; ?><br><br>
     
     <a href="home.php" target="abc" >Home</a><br>
-    <a href="courses.php" target="abc">Manage courses</a><br>
+    <a href="courses.php" target="abc">Add courses</a><br>
+    <a href="managecourse.php" target="abc">Manage courses</a><br>
     <a href="addstudent.php" target="abc" >Manage Students</a><br>
     <a href="manageclass.php" target="abc" >Manage Class</a><br>
     <a href="create_rubric.php" target="abc">Manage Rubrics</a><br>    
