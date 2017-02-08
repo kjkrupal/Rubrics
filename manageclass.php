@@ -2,16 +2,38 @@
 <html>
 <head>
 <style>
+
+nav{
+  float:left;
+  height: 100%;
+  width: 200px;
+  
+}
+
+article{
+  margin-left: 250px;    
+    padding: 1em;
+    overflow: hidden;
+}
+
+
+
 table, th, td{
     border: 0.5px solid black;
     border-collapse: collapse;
 }
 </style>
-
 </head>
 <body>
+<nav id="nav">
 <?php include("home.php"); ?>
-<a href="addstudent.php">Add Class</a>
+</nav>
+<article id="manin">
+ 
+
+<a href="addstudent.php">
+   <input type="button" value="Add Class"/>
+</a>
 <?php
 //session_start();
 include_once 'dbConfig.php';
@@ -39,8 +61,8 @@ if(isset($_GET['action'])){
    		
    		?>
       <table>
-      <h2><?php echo $row['classname'];?></h2>
-   		<a href="manageclass.php?action=deleteClass&cid=<?php echo $row['cid']; ?>">Delete</a>   		
+      <h2><?php echo $row['classname'];?><span><a href="manageclass.php?action=deleteClass&cid=<?php echo $row['cid']; ?>">Delete</a></span></h2>
+   		   		
    		<thead>
             <tr>
                 <th>Name</th>
@@ -73,5 +95,6 @@ if(isset($_GET['action'])){
    }
 ?>
 </table>
+</article>
 </body>
 </html>
