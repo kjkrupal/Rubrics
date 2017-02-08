@@ -22,25 +22,27 @@ if (isset($_POST['login'])) {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
-<head>
-    <title>login</title>
-</head>
 <body>
 
-    <form role="form" action="Login.php" method="post" name="loginform">
-                    
-        Email: <input type="text" name="email" required/><br>
-        Password: <input type="password" name="password" required/>
-        <input type="submit" name="login" value="Login" />
-                    
-    </form>
+<h2>Login</h2>
+
+<form role="form" action="Login.php" method="post" name="loginform">
+    </div>
+
+    <div class="container">
+        <label><b>email</b></label>
+        <input type="text" placeholder="email" name="email" required><br>
+
+        <label><b>password</b></label>
+        <input type="password" placeholder="password" name="password" required><br>
+        <input type="submit" name="login" value="Login"/>
+    </div>
+    New User? <a href="register.php">Sign Up Here</a>
+</form>
     
     <?php if (isset($errormsg)) { echo $errormsg; } ?>
     
-    New User? <a href="register.php">Sign Up Here</a>
-
 </body>
 </html>

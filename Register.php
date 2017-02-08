@@ -43,9 +43,9 @@ if (isset($_POST['signup'])) {
 
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>User Registration</title>
-</head>
+    <h1>User Registration</h1>
 <body>
 
     <form role="form" action="Register.php" method="post" name="signupform">
@@ -62,12 +62,13 @@ if (isset($_POST['signup'])) {
         Re-type Password: <input type="password" name="cpassword" required/><br>
         <?php if (isset($cpassword_error)) echo $cpassword_error; ?>
                     
-        <input type="submit" name="signup" value="Sign Up"/>
+        <input type="submit" name="signup" value="Sign Up"/><br>
                     
     </form>
     <?php if (isset($successmsg)) { echo $successmsg; } ?>
     <?php if (isset($errormsg)) { echo $errormsg; } ?>
           
     Already Registered? <a href="login.php">Login Here</a>
+</head>
 </body>
 </html>
