@@ -1,12 +1,12 @@
-<?php
-    
+<?php    
     session_start();
+    include 'dbConfig.php';
     if(isset($_POST['submitCourse'])){
       $tid = $_SESSION['teacher_id'];
       $cname = $_POST['cname'];
-      $cid = $_POST['cid'];
-      $description = $_POST['description'];
-      $sql = "INSERT INTO course (coursename, description, cid, tid) VALUES ('".$cname."', '".$description."', '".$cid."', '".$tid."')";
+      $cid = $_POST['cid'];      
+      $db->query("INSERT INTO course (coursename,  cid, tid) VALUES ('".$cname."',  '".$cid."', '".$tid."')");
+    
     }
 
 ?>

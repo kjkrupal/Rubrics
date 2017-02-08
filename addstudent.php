@@ -73,7 +73,6 @@ function addStudent($name, $email, $phone){
 <html lang="en">
 
 <body>
-
     <form action="importData.php" method="post" enctype="multipart/form-data" id="importFrm">
                 
     <?php 
@@ -115,9 +114,9 @@ function addStudent($name, $email, $phone){
             <form action="addstudent.php" method="post">
                 <tr>
                     <input type="hidden" name="action" value="add">
-                    <td><input type="text" name="name1"></td>
-                    <td><input type="text" name="email1"></td>
-                    <td><input type="text" name="phone1"></td>
+                    <td><input type="text" name="name1" required></td>
+                <td><input type="email" name="email1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required></td>
+                    <td><input type="tel" name="phone1"  required></td>
                     <td><input type="submit" value="ADD"></td>
                 </tr>
             </form>
@@ -125,14 +124,14 @@ function addStudent($name, $email, $phone){
         </tbody>
     </table>
     <form action="addstudent.php" method="post">
-        Class Name: <input type="text" name="cname">
+        Class Name: <input type="text" name="cname" required >
 
     <?php 
         if(!empty($class)){
             echo ' <div class="alert '.$statusMsgClass.'">'.$statusMsg.'</div>';
         } 
     ?>
-        <input type="hidden" name="action1" value="addclass">
+        <input type="hidden" name="action1" value="addclass" required>
         <br><br><input type="submit" name="submit" value="Add Class">
         <br><a href="manageclass.php">Back</a>
     </form>
