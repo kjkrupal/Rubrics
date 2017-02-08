@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include 'dbConfig.php';
 
 $classStatus = true;
@@ -32,10 +32,28 @@ if(isset($_POST['submitRubrics'])){
 <!DOCTYPE html>
 <html>
 <head>
+
+<style>
+nav{
+  float:left;
+  height: 100%;
+  width: 200px;
+  
+}
+
+article{
+  margin-left: 250px;    
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
     <title>Select Grading</title>
 </head>
 <body>
-	
+	<nav id="nav">
+<?php include("home.php"); ?>
+</nav>
+<article id="main">
 	<?php if($classStatus){ ?>
 	<form method="post" action="select_grading.php">
 	Choose class: 
@@ -96,5 +114,6 @@ if(isset($_POST['submitRubrics'])){
 	<input type="submit" name="submitRubrics" value="Submit">
 	</form>
 	<?php }  ?>
+</article>
 </body>
 </html>

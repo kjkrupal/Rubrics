@@ -12,7 +12,7 @@ nav{
 }
 
 article{
-	margin-left: 170px;    
+	margin-left: 250px;    
     padding: 1em;
     overflow: hidden;
 }
@@ -32,7 +32,7 @@ table, th, td{
 </nav>
 
 <article id="main">
-<a href="courses.php">Add Course</a>
+<button type="button" onclick="courses.php">Add Course</button>
 <?php
 //session_start();
 include 'dbConfig.php';
@@ -51,7 +51,7 @@ if(isset($_GET['action'] )){
    	?>
 
    	
-   	 <h3><?php echo $row['classname'];?></h3>
+   	 <h2><?php echo $row['classname'];?></h2>
    
 		<table style="width: 20%">   		
             <tr>
@@ -66,7 +66,7 @@ if(isset($_GET['action'] )){
 	{
 	 	?>	 	
 	 	<tr>
-	 	<td><h3><?php echo $row['coursename']; ?></h3></td>
+	 	<td><h3><?php echo  $row['coursename']; ?></h3></td>
 	 	<td><a href="managecourse.php?action=deleteCourse&cn=<?php echo $row['coid'];?>">Delete</a></td>
 	 	</tr>
 	 	

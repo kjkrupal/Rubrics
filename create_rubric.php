@@ -4,7 +4,7 @@ $rubricStatus = true;
 $rubricLevelStatus = false;
 $rubricParameterStatus = false;
 $showRubric = false;
-session_start();
+//session_start();
 
 if(isset($_POST['submitRubricName'])){
 	
@@ -56,9 +56,27 @@ if(isset($_POST['addParameter'])){
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+nav{
+  float:left;
+  height: 100%;
+  width: 200px;
+  
+}
+
+article{
+  margin-left: 250px;    
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
 	<title>Create Rubric</title>
 </head>
 <body>
+<nav id="nav">
+<?php include("home.php"); ?>
+</nav>
+<article id="main">
 	<?php if($rubricStatus){ ?>
 	<form method="POST" action="create_rubric.php">
 		Rubric name: <input type="text" name="rubricName"><br><br>
@@ -108,5 +126,6 @@ if(isset($_POST['addParameter'])){
 		</table>
 	
 	<?php } ?>
+	</article>
 </body>
 </html>

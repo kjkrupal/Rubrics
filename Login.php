@@ -79,7 +79,7 @@ if (isset($_POST['signup'])) {
      <form role="form" action="Login.php" method="post" name="loginform">
           <table border="0" style="border:none">
             <tr>
-              <td ><input type="text" tabindex="1"  id="email" placeholder="Email or Phone" name="email" class="inputtext radius1" value="" required></td>
+              <td ><input type="text" tabindex="1"  id="email" placeholder="Email" name="email" class="inputtext radius1" value="" required></td>
               <td ><input type="password" tabindex="2" id="pass" placeholder="Password" name="password" class="inputtext radius1" required ></td>
               <form role="form" action="Login.php" method="post" name="loginform">
     </div>
