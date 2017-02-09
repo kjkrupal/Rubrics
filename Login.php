@@ -73,7 +73,7 @@ if (isset($_POST['signup'])) {
     
     <div id="nav-Bar">
   <div id="nav-Frame">
-    <div id="logo"> <a href="#">Rubrics</a> </div>
+    <div id="logo"> <a href="Login.php">Rubrics</a> </div>
     <div id="header-main-right">
       <div id="header-main-right-nav">
      <form role="form" action="Login.php" method="post" name="loginform">

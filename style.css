@@ -29,8 +29,8 @@ h2 { font-size: 30px; line-height:38px; font-weight:normal; }
 	font-family: Arial, Helvetica, sans-serif; margin-top: 8px; font-size: 15px; border: 1px solid #ccc; width: 420px;  outline: none;
 }
 .loginbox button {
-	background: #673ab7; background-image:-webkit-linear-gradient(top, #673ab7, #673ab7); padding: 10px 20px; font-size: 18px; border: 1px solid #673ab7; letter-spacing: 1px; color: #fff; width: 440px; line-height:30px; font-family:	'Helvetica Neue', Helvetica, Arial, sans-serif;
-	-moz-box-shadow: 1px 1px 3px #673ab7; -webkit-box-shadow: 1px 1px 3px #673ab7; box-shadow: 1px 1px 3px #673ab7; cursor: pointer;
+	background: #2a3f54; background-image:-webkit-linear-gradient(top, #2a3f54, #2a3f54); padding: 10px 20px; font-size: 18px; border: 1px solid #2a3f54; letter-spacing: 1px; color: #fff; width: 440px; line-height:30px; font-family:	'Helvetica Neue', Helvetica, Arial, sans-serif;
+	-moz-box-shadow: 1px 1px 3px #2a3f54; -webkit-box-shadow: 1px 1px 3px #2a3f54; box-shadow: 1px 1px 3px #2a3f54; cursor: pointer;
 }
 
 .radius { -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
@@ -48,8 +48,8 @@ h2 { font-size: 30px; line-height:38px; font-weight:normal; }
 }
 
 #nav-Bar {
-	background: #673ab7;
-	border-bottom: 1px solid #673ab7;
+	background: #2a3f54;
+	border-bottom: 1px solid #2a3f54;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.52);
 	min-width: 1000px;
 	width: 100%;
@@ -97,7 +97,7 @@ h2 { font-size: 30px; line-height:38px; font-weight:normal; }
 	margin: 0;
 	padding: 5px 8px 5px 8px;
 	width: 166px;
-	border:1px solid #673ab7;
+	border:1px solid #2a3f54;
 }
 #login_form .inputtext:hover {
 	border-color: #A0A0A0 #B9B9B9 #B9B9B9;
@@ -120,4 +120,4 @@ h2 { font-size: 30px; line-height:38px; font-weight:normal; }
 	text-align: left;
 	vertical-align: middle;
 }
-.fbbutton { border:1px solid #673ab7; width:94px; background-image:-webkit-linear-gradient(top, #3a009d, #701eff); font-size:14px; line-height:25px; font-weight:normal; color:#fff; }
+.fbbutton { border:1px solid #2a3f54; width:94px; background-image:-webkit-linear-gradient(top, #1d7084, #1d7084); font-size:14px; line-height:25px; font-weight:normal; color:#fff; }
