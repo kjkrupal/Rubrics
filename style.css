@@ -48,8 +48,8 @@ h2 { font-size: 30px; line-height:38px; font-weight:normal; }
 }
 
 #nav-Bar {
-	background: #2a3f54;
-	border-bottom: 1px solid #2a3f54;
+	background: #1d7084;
+	border-bottom: 1px solid #1d7084;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.52);
 	min-width: 1000px;
 	width: 100%;
@@ -90,7 +90,7 @@ h2 { font-size: 30px; line-height:38px; font-weight:normal; }
 	right: 0;
 }
 #login_form .inputtext {
-	background-color: #FFFFFF;
+	background-color: #1d7084;
 	height:16px;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	font-size: 13px;
