@@ -134,8 +134,7 @@ table, th, td{
               </ul>
             </nav>
           </div>
-        </div>
-        
+        </div>      
 
 
     
@@ -149,18 +148,19 @@ table, th, td{
 //session_start();
 include 'dbConfig.php';
 
+
 if(isset($_GET['action'] )){
 	if(!strcmp($_GET['action'], "deleteCourse")){
-		$cname=$_GET['cn'];
+		$cname=$_GET['cn']; 
 		$db->query("DELETE FROM course WHERE coid=".$cname. ";"); 
 	}
 }
 
 	$classname=$db->query("SELECT classname,cid FROM class WHERE tid=".$_SESSION['teacher_id']);   
+   
    while($row = $classname->fetch_assoc())
    {
    	?>
-
    	
    	 <h2><?php echo $row['classname'];?></h2>
    
@@ -169,26 +169,23 @@ if(isset($_GET['action'] )){
             <thead>
                 <th><h4>Course</h4></th>
                 <th><h4>Action</h4></th>
-                </thead>
+            </thead>
             </tr>
    <?php
 	$course=$db->query("SELECT coursename, coid FROM course WHERE cid=".$row['cid']);
-	while($row = $course->fetch_assoc())
+	while($row1 = $course->fetch_assoc())
 	{
 	 	?>	 	
 	 	<tr>
-	 	<td><h3><a href="viewassignment.php?id=<?php echo  $row['coid']; ?>"><?php echo  $row['coursename']; ?></a></h3></td>
-	 	<td><a href="managecourse.php?action=deleteCourse&cn=<?php echo $row['coid'];?>">Delete</a></td>
+	 	<td><h3><a href="viewassignment.php?id=<?php echo  $row1['coid']; ?>"><?php echo  $row1['coursename']; ?></a></h3></td>
+	 	<td><a href="managecourse.php?action=deleteCourse&cn=<?php echo $row1['coid'];?>">Delete</a></td>
 	 	</tr>
 	 	
 	<?php  } ?>
 	 <br></table>
 	 <?php 
 	 } 
-   $_SESSION['$coid']=$row;
    ?>
-
-
 	 </article>
 </body>
 </html>

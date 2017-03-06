@@ -145,7 +145,7 @@ table, th, td{
       $cid = $_POST['cid'];
       $coursenametable= $cname.$_SESSION['teacher_id'];
       $db->query("INSERT INTO course (coursename, cid, tid, coursetable) VALUES ('".$cname."', '".$cid."', '".$tid."','".$coursenametable."')");
-      $db->query("CREATE TABLE " .$cname.$_SESSION['teacher_id']." (sr_no INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), Deadline VARCHAR(100), PRIMARY KEY (sr_no));");
+      $db->query("CREATE TABLE " .$cname.$_SESSION['teacher_id']." (assignment_id INT NOT NULL AUTO_INCREMENT, name VARCHAR(100), Deadline VARCHAR(100), grade int(11), PRIMARY KEY (assignment_id));");
        
     }
 
