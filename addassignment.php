@@ -166,7 +166,7 @@ if(isset($_POST['action1'])){
 	Deadline: <input type="date" name="deadline"><br>
 	Grade: <input type="number" name="grade"><br>
 	<input type="submit" name="assignmentssubmit" value="submit">
-		<a href="viewassignment.php">Back</a>
+		<a href="viewassignment.php"><input type="button" value="Back"/></a>
 </form>
 </body>
 </html>

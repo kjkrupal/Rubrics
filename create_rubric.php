@@ -254,7 +254,7 @@ table, th, td{
 				$parameterQuery = $db->query("SELECT * FROM ".$parameter."  ORDER BY param_id ASC");
         		if($levelQuery->num_rows > 0){ 
             		while($row = $levelQuery->fetch_assoc()){ ?>
-			<td><?php echo $row['name']?></td>
+			<td><?php echo $row['name']  ?>
 			<?php }} ?></tr>
 			<?php if($parameterQuery->num_rows > 0){
 					while($row = $parameterQuery->fetch_assoc()){ ?>

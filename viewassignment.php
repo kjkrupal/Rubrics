@@ -154,7 +154,7 @@ include 'dbConfig.php';
 
 ?>
 
-<a href="addassignment.php?id=<?php echo $id?>">Add Assisgnment</a>
+<a href="addassignment.php?id=<?php echo $id?>"><input type="button" value="Add Assisgnment"/></a>
 <br><br>
 <?php 
   include 'dbConfig.php';
@@ -185,6 +185,6 @@ You have not created any assignments for this course.
   </tr>
 
 <?php }} ?>
-<a href="managecourse.php">Back</a>
+<a href="managecourse.php"><input type="button" value="Back"/></a>
 </body>
 </html>

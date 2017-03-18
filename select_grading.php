@@ -125,24 +125,36 @@ include_once 'dbConfig.php';
     <?php }?>
 <?php
 //session_start();
+$dbName = 'rubric';
 include 'dbConfig.php';
 
 $classStatus = true;
 $courseStatus = false;
+$assignmentStatus = false;
 $rubricStatus = false;
 
 if(isset($_POST['submitClass'])){
 	$_SESSION['grade_cid'] = $_POST['cid'];
 	$classStatus = false;
 	$courseStatus = true;
-	$rubricStatus = false;
+  $assignmentStatus = false;
+	$rubricStatus = false;  
 }
 
 if(isset($_POST['submitCourse'])){
 	$_SESSION['grade_coid'] = $_POST['coid'];
 	$classStatus = false;
 	$courseStatus = false;
-	$rubricStatus = true;
+  $assignmentStatus = true;
+	$rubricStatus = false;   
+}
+
+if(isset($_POST['submitAssignment'])){
+  $classStatus = false;
+  $courseStatus = false;
+  $assignmentStatus = false;
+  $rubricStatus = true;
+
 }
 
 if(isset($_POST['submitRubrics'])){
@@ -150,13 +162,40 @@ if(isset($_POST['submitRubrics'])){
 	$classStatus = false;
 	$courseStatus = false;
 	$rubricStatus = false;
-	header("Location: grading.php");
+  $assignmentStatus = false;
+	//header("Location: grading.php");*/
+
+  $sql = "SHOW TABLES FROM rubric ";
+ $result=$db->query($sql);
+ $query1 = $db->query("SELECT coursename, coid, coursetable FROM course " )->fetch_assoc(); 
+ $coursesn= $query1['coursename'];
+ $coursesid= $query1['coid']; 
+ $tablename=$query1['coursetable'];
+
+  $tid=$_SESSION['teacher_id'];
+  $ttable=$tid."_grade";
+  $coursetable=$coursesn."_grade";
+  //$abc=$cname.$_SESSION['teacher_id'];
+
+  
+
+
+  if($result==$ttable){
+
+  }
+    else{      
+
+    $db->query("INSERT INTO startgrading ( tid_grade) VALUES ('".$ttable."');");
+    $db->query("CREATE TABLE " .$ttable." (tablegrade_id INT NOT NULL AUTO_INCREMENT, coursename VARCHAR(100),  coid int(11), PRIMARY KEY (tablegrade_id));");
+
+     $db->query("INSERT INTO ".$ttable." ( coursename, coid) VALUES ('".$coursetable."','".$coursesid."');");
+     $db->query("CREATE TABLE " .$coursetable." (coursegrade_id INT NOT NULL AUTO_INCREMENT, assignment_name VARCHAR(100),  assignment_id int(11), PRIMARY KEY (coursegrade_id));");
+   }
+
+
 }
 
 ?>
-<!DOCTYPE html>
-<html>
-<head>
 
 <style>
 article{
@@ -172,8 +211,9 @@ article{
     <title>Select Grading</title>
 </head>
 <body>
-
 <article id="main">
+
+
 	<?php if($classStatus){ ?>
 	<form method="post" action="select_grading.php">
 	Choose class: 
@@ -193,17 +233,20 @@ article{
 	</select>
 	<input type="submit" name="submitClass" value="Submit">
 	</form>
+
+
 	
 	<?php } else if($courseStatus){ ?>
-	<form method="post" action="select_grading.php">
-	Choose course: 
-	<select name="coid">
+	 <form method="post" action="select_grading.php">
+	 Choose course: 
+	 <select name="coid">
 		<option value="">--SELECT--</option>
 			<?php
-				$query = $db->query("SELECT * FROM course WHERE tid=".$_SESSION['teacher_id']);
+				$query = $db->query("SELECT * FROM course WHERE cid=".$_POST['cid']);
 				if($query->num_rows > 0){
 					while ($row = $query->fetch_assoc()){
-			?>
+
+           ?>
 	
 		<option value="<?php echo $row['coid']; ?>"><?php echo $row['coursename'];?></option>
 	
@@ -211,8 +254,43 @@ article{
 			<option value="">No Course Available</option>
 		<?php } ?>
 	</select>
+  <?php
+        $query = $db->query("SELECT * FROM course WHERE cid=".$_POST['cid']);
+        if($query->num_rows > 0){
+          while ($row = $query->fetch_assoc()){
+      ?>
+  <input type="hidden" name="coursetable" value="<?php echo $row['coursetable']?>">    
+  <?php }} ?>    
 	<input type="submit" name="submitCourse" value="Submit">
+  <a href="select_grading"><input type="button" value="Back"/></a>
 	</form>
+
+
+
+  <?php } else if($assignmentStatus){ ?>
+  <form method="post" action="select_grading.php">
+  Choose assignment: 
+  <select name="assignment_id">
+    <option value="">--SELECT--</option>
+      <?php
+        $query = $db->query("SELECT * FROM ".$_POST['coursetable']);
+        if($query->num_rows > 0){
+          while ($row = $query->fetch_assoc()){
+
+      ?>
+  
+    <option value="<?php echo $row['assignment_id']; ?>"><?php echo $row['name'];?></option>
+  
+    <?php }} else { ?>
+      <option value="">No Assignment Available</option>
+    <?php } ?>
+  </select>
+  <input type="submit" name="submitAssignment" value="Submit">
+  <a href="select_grading"><input type="button" value="Back"/></a>
+  </form>
+
+
+
 	
 	<?php } else if($rubricStatus){ ?>
 	<form method="post" action="select_grading.php">
@@ -229,11 +307,11 @@ article{
 	
 		<?php }} else { ?>
 			<option value="">No Rubrics Available</option>
-		<?php } ?>
+		<?php }?>
 	</select>
 	<input type="submit" name="submitRubrics" value="Submit">
-	</form>
-	<?php }  ?>
+	</form> 
+  <?php  }?>
 </article>
 </body>
 </html>
