@@ -78,8 +78,7 @@ include_once 'dbConfig.php';
                   <li><a href="manageclass.php"><i class="fa fa-home"></i> Manage Class <span class="fa fa-chevron-down"></span></a></li>
                   <li><a href="create_rubric.php"><i class="fa fa-home"></i> Manage Rubrics <span class="fa fa-chevron-down"></span></a></li>
                   <li><a href="select_grading.php"><i class="fa fa-home"></i> Start Grading <span class="fa fa-chevron-down"></span></a></li>
-                  <li><a href="feedback.php"><i class="fa fa-home"></i> Feedback <span class="fa fa-chevron-down"></span></a></li>
-                </ul>
+                  </ul>
               </div>
             
             <div class="sidebar-footer hidden-small">

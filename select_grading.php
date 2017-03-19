@@ -163,15 +163,13 @@ if(isset($_POST['submitRubrics'])){
 	$courseStatus = false;
 	$rubricStatus = false;
   $assignmentStatus = false;
-	//header("Location: grading.php");*/
-
-  $result=$db->query("SHOW TABLES FROM rubric ");
+	 $result=$db->query("SHOW TABLES FROM rubric ");
   $coid = $_SESSION['grade_coid'];
-  $query1 = $db->query("SELECT coursename, coursetable FROM course WHERE coid=".$coid)->fetch_assoc(); 
+  $query1 = $db->query("SELECT coursename, coursetable, cid FROM course WHERE coid=".$coid)->fetch_assoc(); 
   $coursesn= $query1['coursename'];
   $coursesid = $coid; 
   $tablename = $query1['coursetable'];
-
+  $classid=$query1['cid'];
   $tid=$_SESSION['teacher_id'];
   $ttable=$tid."_grade";
   $coursetable=$coursesn."_grade";
@@ -181,9 +179,17 @@ if(isset($_POST['submitRubrics'])){
   $assname=$query2['name'];
   $assid=$query2['assignment_id'];
 
+  $stud="studnetgrade_".$classid.$coursesid.$assid;
+  $rid=$_POST['rid'];
+  $rubricid=$rid;
+  $query2 =$db->query("SELECT rubricname FROM rubrics WHERE rid=".$rid)->fetch_assoc();
+  $rubricParameter = $query2['rubricname']."parameter".$tid;
+  $query3=$db->query("SELECT name FROM ".$rubricParameter );
+  
   if($result==$ttable){
-     }
-    else{
+
+  }
+  else{
 
     $db->query("INSERT INTO startgrading ( tid_grade) VALUES ('".$ttable."');");
     $db->query("CREATE TABLE " .$ttable." (tablegrade_id INT NOT NULL AUTO_INCREMENT, coursename VARCHAR(100),  coid int(11), PRIMARY KEY (tablegrade_id));");
@@ -193,9 +199,21 @@ if(isset($_POST['submitRubrics'])){
 
      $db->query("INSERT INTO ".$coursetable." ( assignment_name, assignment_id) VALUES ('".$assname."','".$assid."');");
 
+     $sqlrubric1 = "CREATE TABLE ".$stud." (stgrade_id INT NOT NULL AUTO_INCREMENT, student_id INT, ";
+     $sqlrubric2 = "";
+
+     if($query3->num_rows > 0){
+        while($rows = $query3->fetch_assoc()){
+
+          $sqlrubric2 = $sqlrubric2.$rows['name']." INT, ";
+
+        }
+      }
+      $sqlrubric = $sqlrubric1.$sqlrubric2."total INT, PRIMARY KEY (stgrade_id));";
+
+      $db->query($sqlrubric);
    }
-
-
+   
 }
 
 ?>
