@@ -165,31 +165,34 @@ if(isset($_POST['submitRubrics'])){
   $assignmentStatus = false;
 	//header("Location: grading.php");*/
 
-  $sql = "SHOW TABLES FROM rubric ";
- $result=$db->query($sql);
- $query1 = $db->query("SELECT coursename, coid, coursetable FROM course " )->fetch_assoc(); 
- $coursesn= $query1['coursename'];
- $coursesid= $query1['coid']; 
- $tablename=$query1['coursetable'];
+  $result=$db->query("SHOW TABLES FROM rubric ");
+  $coid = $_SESSION['grade_coid'];
+  $query1 = $db->query("SELECT coursename, coursetable FROM course WHERE coid=".$coid)->fetch_assoc(); 
+  $coursesn= $query1['coursename'];
+  $coursesid = $coid; 
+  $tablename = $query1['coursetable'];
 
   $tid=$_SESSION['teacher_id'];
   $ttable=$tid."_grade";
   $coursetable=$coursesn."_grade";
   //$abc=$cname.$_SESSION['teacher_id'];
 
-  
-
+  $query2 =$db->query("SELECT assignment_id, name FROM $tablename  ")->fetch_assoc();
+  $assname=$query2['name'];
+  $assid=$query2['assignment_id'];
 
   if($result==$ttable){
-
-  }
-    else{      
+     }
+    else{
 
     $db->query("INSERT INTO startgrading ( tid_grade) VALUES ('".$ttable."');");
     $db->query("CREATE TABLE " .$ttable." (tablegrade_id INT NOT NULL AUTO_INCREMENT, coursename VARCHAR(100),  coid int(11), PRIMARY KEY (tablegrade_id));");
 
      $db->query("INSERT INTO ".$ttable." ( coursename, coid) VALUES ('".$coursetable."','".$coursesid."');");
      $db->query("CREATE TABLE " .$coursetable." (coursegrade_id INT NOT NULL AUTO_INCREMENT, assignment_name VARCHAR(100),  assignment_id int(11), PRIMARY KEY (coursegrade_id));");
+
+     $db->query("INSERT INTO ".$coursetable." ( assignment_name, assignment_id) VALUES ('".$assname."','".$assid."');");
+
    }
 
 
