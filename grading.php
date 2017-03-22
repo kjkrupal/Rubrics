@@ -59,11 +59,14 @@ include_once 'dbConfig.php';
                 
                 <ul class="nav side-menu">
                   <li><a href="home.php" ><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a></li>
-                  <li><a href="managecourse.php"><i class="fa fa-home"></i> Manage Courses <span class="fa fa-chevron-down"></span></a></li>
                   <li><a href="manageclass.php"><i class="fa fa-home"></i> Manage Class <span class="fa fa-chevron-down"></span></a></li>
+                  <li><a href="managecourse.php"><i class="fa fa-home"></i> Manage Courses <span class="fa fa-chevron-down"></span></a></li>
+                  
                   <li><a href="create_rubric.php"><i class="fa fa-home"></i> Manage Rubrics <span class="fa fa-chevron-down"></span></a></li>
                   <li><a href="select_grading.php"><i class="fa fa-home"></i> Start Grading <span class="fa fa-chevron-down"></span></a>
                   </li>
+                  <li><a href="feedback.php"><i class="fa fa-home"></i> Feedback <span class="fa fa-chevron-down"></span></a></li>
+                  <li><a href="chart.php"><i class="fa fa-home"></i> Graph <span class="fa fa-chevron-down"></span></a></li>
                 </ul>
               </div>
             
@@ -125,9 +128,6 @@ include_once 'dbConfig.php';
     <?php }?>
 <?php
 
-session_start();
-
-
 ?>
 
 <style>
@@ -140,13 +140,35 @@ article{
     background-color: white;
     width:1125px;
 }
+
+table, th, td{
+    border: 0.5px solid black;
+    border-collapse: collapse;
+  }
+
 </style>
     <title>Start Grading</title>
 </head>
 <body>
 <article id="main">
 
+<?php 
+  include 'dbConfig.php';
 
+  $classname = $db->query("SELECT classname FROM class WHERE cid=".$_SESSION['grade_cid'])->fetch_assoc();
+  $studentdetails = $db->query("SELECT * FROM ".$classname['classname'].$_SESSION['teacher_id']);
+        
+?>
+  <table>
+    <?php if($studentdetails->num_rows > 0){ 
+      while($row = $studentdetails->fetch_assoc()){
+    ?>
+      <tr>
+        <td><a href="gradestudent.php?id=<?php echo $row['student_id']; ?>"><?php echo $row['name']; ?></a></td>
+      </tr>
+    <?php } } ?>
+    
+    </table>
 	
 </article>
 </body>

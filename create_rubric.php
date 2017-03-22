@@ -72,11 +72,14 @@ table, th, td{
                 
                 <ul class="nav side-menu">
                   <li><a href="home.php" ><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a></li>
-                  <li><a href="managecourse.php"><i class="fa fa-home"></i> Manage Courses <span class="fa fa-chevron-down"></span></a></li>
                   <li><a href="manageclass.php"><i class="fa fa-home"></i> Manage Class <span class="fa fa-chevron-down"></span></a></li>
+                  <li><a href="managecourse.php"><i class="fa fa-home"></i> Manage Courses <span class="fa fa-chevron-down"></span></a></li>
+                  
                   <li><a href="create_rubric.php"><i class="fa fa-home"></i> Manage Rubrics <span class="fa fa-chevron-down"></span></a></li>
                   <li><a href="select_grading.php"><i class="fa fa-home"></i> Start Grading <span class="fa fa-chevron-down"></span></a>
                   </li>
+                  <li><a href="feedback.php"><i class="fa fa-home"></i> Feedback <span class="fa fa-chevron-down"></span></a></li>
+                  <li><a href="chart.php"><i class="fa fa-home"></i> Graph <span class="fa fa-chevron-down"></span></a></li>
                 </ul>
               </div>
             
@@ -253,8 +256,8 @@ table, th, td{
 				$levelQuery = $db->query("SELECT * FROM ".$level."  ORDER BY level_id ASC");
 				$parameterQuery = $db->query("SELECT * FROM ".$parameter."  ORDER BY param_id ASC");
         		if($levelQuery->num_rows > 0){ 
-            		while($row = $levelQuery->fetch_assoc()){ ?>
-			<td><?php echo $row['name']  ?>
+            		while($row1 = $levelQuery->fetch_assoc()){ ?>
+			<td><?php echo $row1['name']  ?></td>
 			<?php }} ?></tr>
 			<?php if($parameterQuery->num_rows > 0){
 					while($row = $parameterQuery->fetch_assoc()){ ?>
